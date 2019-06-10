@@ -8,21 +8,24 @@
 </div>
 <div class="grid">
     {% for jersey in jerseys %}
-    <div class="card mb-5" style="width: 18rem;">
-        <div class="card-header">
-            <h5>
-                {{ jersey.year }} {{ jersey.club }} {{ jersey.kit_type }} <span
-                    class="badge badge-secondary">{{ jersey.sleeve_length }}</span>
-            </h5>
+    <a href="{% url 'detail' jersey.id %}">
+        <div class="card mb-5" style="width: 18rem;">
+            <div class="card-header">
+                <h5>
+                    {{ jersey.year }} {{ jersey.club }} {{ jersey.kit_type }} <span
+                        class="badge badge-secondary">{{ jersey.sleeve_length }}/S</span>
+                </h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h6>{{ jersey.player }}</h6>
+                </li>
+                <li class="list-group-item">Size: {{ jersey.size }}</li>
+                <li class="list-group-item">${{ jersey.price }}</li>
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <h6>{{ jersey.player }}</h6>
-            </li>
-            <li class="list-group-item">Size: {{ jersey.size }}</li>
-            <li class="list-group-item">{{ jersey.price }}</li>
-        </ul>
-    </div>
+    </a>
     {% endfor %}
 </div>
 

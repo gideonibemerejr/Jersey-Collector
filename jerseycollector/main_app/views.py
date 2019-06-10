@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Jersey, jerseys
+from .models import Jersey
 # Create your views here.
 
 
@@ -8,7 +8,13 @@ def index(request):
 
 
 def jerseys_index(request):
+    jerseys = Jersey.objects.all()
     return render(request, 'jerseys/index.html', {'title': 'All Jerseys | Jersey Collector', 'jerseys': jerseys})
+
+
+def jerseys_detail(request, jersey_id):
+    jersey = Jersey.objects.get(id=jersey_id)
+    return render(request, 'jerseys/detail.html', {'title': 'Jersey Detail | Jersey Collector', 'jersey': jersey})
 
 
 def about(request):

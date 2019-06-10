@@ -1,0 +1,32 @@
+{% extends "../layout.html" %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid mt-5">
+    <div class="container">
+        <h1>Jersey Detail</h1>
+    </div>
+</div>
+<div class="card mb-5" style="width: 18rem;">
+    <div class="card-header">
+        <h5>
+            {{ jersey.year }}
+            {{ jersey.club }}
+            {{ jersey.kit_type }}
+            <span class="badge badge-secondary">
+                {{ jersey.sleeve_length }}
+            </span>
+        </h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h6>{{ jersey.player }}</h6>
+        </li>
+        <li class="list-group-item">
+            Size: {{ jersey.size }}
+        </li>
+        <li class="list-group-item">
+            {{ jersey.price }}
+        </li>
+    </ul>
+</div>
+{% endblock %}
