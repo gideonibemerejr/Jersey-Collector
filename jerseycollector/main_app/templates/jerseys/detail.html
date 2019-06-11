@@ -6,27 +6,39 @@
         <h1>Jersey Detail</h1>
     </div>
 </div>
-<div class="card mb-5" style="width: 18rem;">
-    <div class="card-header">
-        <h5>
-            {{ jersey.year }}
-            {{ jersey.club }}
-            {{ jersey.kit_type }}
-            <span class="badge badge-secondary">
-                {{ jersey.sleeve_length }}
-            </span>
-        </h5>
+<div class="d-flex justify-content-center">
+    <div class="card mb-5" style="width: 18rem;">
+        <div class="card-header">
+            <h5>
+                {{ jersey.year }}
+                {{ jersey.club }}
+                {{ jersey.kit_type }}
+                <span class="badge badge-secondary">
+                    {{ jersey.sleeve_length }}/S
+                </span>
+            </h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h6>{{ jersey.player }}</h6>
+            </li>
+            <li class="list-group-item">
+                Size: {{ jersey.size }}
+            </li>
+            <li class="list-group-item">
+                ${{ jersey.price }}
+            </li>
+        </ul>
+        <div class="card-body">
+            <a href="{% url 'jerseys_update' jersey.id %}" class="card-link btn btn-primary">
+                <i class="fas fa-edit"></i>
+                Edit
+            </a>
+            <a href="{% url 'jerseys_delete' jersey.id %}" class="card-link btn btn-danger">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+            </a>
+        </div>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <h6>{{ jersey.player }}</h6>
-        </li>
-        <li class="list-group-item">
-            Size: {{ jersey.size }}
-        </li>
-        <li class="list-group-item">
-            {{ jersey.price }}
-        </li>
-    </ul>
 </div>
 {% endblock %}
