@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Jersey
+from .forms import TeammateForm
 # Create your views here.
 
 
@@ -32,8 +33,17 @@ def jerseys_index(request):
 
 def jerseys_detail(request, jersey_id):
     jersey = Jersey.objects.get(id=jersey_id)
-    return render(request, 'jerseys/detail.html', {'title': 'Jersey Detail | Jersey Collector', 'jersey': jersey})
+    teammate_form = TeammateForm()
+    return render(request, 'jerseys/detail.html', {'title': 'Jersey Detail | Jersey Collector', 'jersey': jersey, 'teammate_form': teammate_form})
 
 
 def about(request):
     return render(request, 'about.html', {'title': 'About | Jersey Collector'})
+
+def add_teammate(request, jersey_id):
+    form = TeammateForm(request.POST)
+    if form.is_valid():
+        new_teammate = form.save(commit=False)
+        new_teammate.jersey_id = jersey_id
+        new_teammate.save()
+    return redirect('detail', jersey_id=jersey_id)

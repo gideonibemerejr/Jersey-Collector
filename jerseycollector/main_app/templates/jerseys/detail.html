@@ -40,5 +40,48 @@
             </a>
         </div>
     </div>
+    <div class="card mb-5" style="width: 18rem;">
+        <div class="card-header">
+            Teammates
+        </div>
+
+        
+        <div class="list-group list-group-flush">
+            {% if jersey.teammates.count %}
+            {% for teammate in jersey.teammates.all %}
+                <p class="list-group-item">{{ teammate.last_name }}</p>
+            {% endfor %}
+            {% else %}
+                <p>No Teammates listed</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <h3>Add Teammate</h3>
+        <form action="{% url 'add_teammate' jersey.id %}" method="post">
+            {% csrf_token %}
+            {{teammate_form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Add Teammate">
+        </form>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <h3>Add Teammate</h3>
+        <form action="{% url 'add_teammate' jersey.id %}" method="post">
+            {% csrf_token %}
+            {{teammate_form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Add Teammate">
+        </form>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <h3>Add Teammate</h3>
+        <form action="{% url 'add_teammate' jersey.id %}" method="post">
+            {% csrf_token %}
+            {{teammate_form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Add Teammate">
+        </form>
+    </div>
+
 </div>
 {% endblock %}
