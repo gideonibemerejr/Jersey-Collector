@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h1>Teammate List</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for teammate in teammate_list %}
+        <tr>
+        <td>
+            <a href="{% url 'teammates_detail' teammate.id %}">
+                <p>{{teammate.last_name}}</p>
+            </a>
+        </td>
+        
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}

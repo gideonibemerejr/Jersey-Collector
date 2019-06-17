@@ -21,13 +21,30 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav justify-flex-end">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'jerseys' %}">View Jerseys</a>
+                    <a class="nav-link" href="{% url 'index' %}">View Jerseys</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'jerseys_create' %}">Add a Jersey</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teammates_index' %}">View Teammates</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teammates_create' %}">Add Teammates</a>
+                    
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out, {{ user.username }}</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -35,12 +52,10 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="bg-light">
-        <p>All Rights Reserved, &copy; 2019 Jersey Collector &nbsp;</p>
+    <footer class="navbar bg-light d-flex">
+        <p class="mb-0">All Rights Reserved, &copy; 2019 Jersey Collector &nbsp;</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
